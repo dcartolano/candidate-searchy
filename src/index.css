@@ -118,3 +118,39 @@ tbody tr:nth-child(odd) {
   width: 80vw;
   table-layout: fixed;
 }
+
+/* Candidate Card Styles */
+.candidateCard {
+  margin: 30px auto;
+  height: 200px;
+  width: 800px;
+  background-color: var(--secondary-color);
+  border: 3px solid var(--accent-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.candidateCard figure,
+.candidateCard img {
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  /* width: 100%; */
+  /* object-fit: cover;
+  border-radius: 10px 10px 0 0; */
+}
+
+.candidateCard .details,
+.candidateCard .bio {
+  padding: 20px;
+  flex-basis: 300px;
+  align-self: center;
+}
+
+.candidateCard .icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  flex-direction: column;
+}
