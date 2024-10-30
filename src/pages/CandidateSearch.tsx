@@ -1,9 +1,7 @@
 // import { useState, useEffect } from 'react';
-// import { type FormEvent, useState, useEffect } from 'react';
 import { type FormEvent, useState } from 'react';
-// import { searchGithub, searchGithubUser } from '../api/API';
-// import { searchGithub } from '../api/API';
-import { searchGithubUser } from '../api/API';
+import { searchGithub, searchGithubUser } from '../api/API';
+// import { searchGithubUser } from '../api/API';
 
 import Candidate from '../interfaces/Candidate.interface';
 import CandidateCard from '../components/CandidateCard';
@@ -20,20 +18,19 @@ const CandidateSearch = () => {
     bio: '',
   });
 
-  const [searchInput, setSearchInput] = useState<string>('');
+  let [candidatesArray, setCandidatesArray] = useState<[]>([]);
+  // let [candidatesData, setCandidatesData] = useState<[]>([]);
 
-  // addToPotentialCandidates
   const addToPotentialCandidates = () => {
-    let parsedPotentialCandidates: Candidate[] = [];
-    const storedPotentialCandidates = localStorage.getItem('filmsToWatch');
-    if (typeof storedPotentialCandidates === 'string') {
-      parsedPotentialCandidates = JSON.parse(storedPotentialCandidates);
-    }
-    parsedPotentialCandidates.push(currentCandidate);
-    localStorage.setItem('filmsToWatch', JSON.stringify(parsedPotentialCandidates));
+    // let parsedPotentialCandidates: Candidate[] = [];
+    // const storedPotentialCandidates = localStorage.getItem('filmsToWatch');
+    // if (typeof storedPotentialCandidates === 'string') {
+    //   parsedPotentialCandidates = JSON.parse(storedPotentialCandidates);
+    // }
+    // parsedPotentialCandidates.push(currentCandidate);
+    // localStorage.setItem('filmsToWatch', JSON.stringify(parsedPotentialCandidates));
   };
 
-// showNextCandidate
   const showNextCandidate = () => {
     // think this needs significantly different logic anyways
     // let parsedAlreadySeenFilms: Candidate[] = [];
@@ -48,54 +45,47 @@ const CandidateSearch = () => {
     // );
   };
 
-  // searchForCandidate ? same as last one?
-  // test code for allowing user input
-  const searchForCandidate = async (event: FormEvent, candidate_login: string) => {  //what should the event be?
+  const searchForCandidates = async (event: FormEvent) => {
     event.preventDefault();
-    const data: Candidate = await searchGithubUser(candidate_login);
+    const data = await searchGithub();
 
-    setCurrentCandidate(data);
-  };
+    console.log(data);
+    setCandidatesArray(data);
+    const candidata = await candidatesArray.map(getCandidateData);
+    console.log(candidata[0]);
+    // console.log(candidata[0].PromiseResult)
+    return candidata;
+  }
 
-  // // test code for no user input
-  // const searchForCandidate = async (event: FormEvent) => {  //what should the event be?
-  //   event.preventDefault();
-  //   const data: Candidate = await searchGithub();
-
-  //   setCurrentCandidate(data);
-  // };
+  const getCandidateData =  (candidate: Candidate) => {
+    console.log('hello');
+    console.log('Candidate:', candidate);
+    const data =  searchGithubUser(candidate.login);
+    console.log(data);
+    return data;
+    // return await searchGithubUser(candidate.login);
+  }
 
   return (
     // <h1>CandidateSearch</h1>);
-  <>
-    <section id='searchSection'>
-      <form
-        onSubmit={(event: FormEvent) =>
-          // test code for user input
-          searchForCandidate(event, searchInput)
-          // // test code for no user input
-          // searchForCandidate(event)
-        }
-      >
-        {/* // test code for user input */}
-        <input
-          type='text'
-          name=''
-          id=''
-          placeholder='Enter a username'
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        <button type='submit' id='searchBtn'>
-          Search
-        </button>
-      </form>
-    </section>
-    <CandidateCard
-      currentCandidate={currentCandidate}
-      addToPotentialCandidates={addToPotentialCandidates}
-      showNextCandidate={showNextCandidate}
-    />
-  </>
+    <>
+      <section id='searchSection'>
+        <form
+          onSubmit={(event: FormEvent) => {
+            searchForCandidates(event);
+          }}
+        >
+          <button type='submit' id='searchBtn'>
+            Search
+          </button>
+        </form>
+      </section>
+      <CandidateCard
+        currentCandidate={currentCandidate}
+        addToPotentialCandidates={addToPotentialCandidates}
+        showNextCandidate={showNextCandidate}
+      />
+    </>
   );
 };
 
