@@ -8,14 +8,39 @@ import CandidateCard from '../components/CandidateCard';
 
 const CandidateSearch = () => {
   const [currentCandidate, setCurrentCandidate] = useState<Candidate>({
-    name: '',
-    login: '',
-    location: '',
-    avatar_url: '',
-    email: '',
-    html_url: '',
-    company: '',
-    bio: '',
+  avatar_url: null,
+  bio: null,
+  blog: null,
+  company: null,
+  created_at: null,
+  email: null,
+  events_url: null,
+  followers: null,
+  followers_url: null,
+  following: null,
+  following_url: null,
+  gists_url: null,
+  gravatar_id: null,
+  hireable: null,
+  html_url: null,
+  id: null,
+  login: null,
+  location: null,
+  name: null,
+  node_id: null,
+  organizations_url: null,
+  public_gists: null,
+  public_repos: null,
+  received_events_url: null,
+  repos_url: null,
+  site_admin: null,
+  starred_url: null,
+  subscriptions_url: null,
+  twitter_username: null,
+  type: null,
+  updated_at: null,
+  url: null,
+  user_view_type: null,
   });
 
   let [candidatesArray, setCandidatesArray] = useState<[]>([]);
@@ -45,25 +70,29 @@ const CandidateSearch = () => {
     // );
   };
 
+  const getCandidateData = async (candidate: Candidate) => {
+      // console.log('Candidate:', candidate);
+      // console.log('candidate.login:', candidate.login);
+      const data = await searchGithubUser(candidate.login);
+      // console.log(data);
+      return data;
+    }
+
   const searchForCandidates = async (event: FormEvent) => {
     event.preventDefault();
     const data = await searchGithub();
 
     console.log(data);
     setCandidatesArray(data);
-    const candidata = await candidatesArray.map(getCandidateData);
-    console.log(candidata[0]);
+    // const candidata = await candidatesArray.map(getCandidateData);
+    const candidata = data.map(async(candidate: any) => {
+      let candidateReturn = await getCandidateData(candidate);
+      console.log(candidateReturn);
+      return {...candidateReturn};
+    });
+    console.log(candidata);
     // console.log(candidata[0].PromiseResult)
     return candidata;
-  }
-
-  const getCandidateData =  (candidate: Candidate) => {
-    console.log('hello');
-    console.log('Candidate:', candidate);
-    const data =  searchGithubUser(candidate.login);
-    console.log(data);
-    return data;
-    // return await searchGithubUser(candidate.login);
   }
 
   return (
