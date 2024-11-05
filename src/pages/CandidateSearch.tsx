@@ -56,7 +56,7 @@ const CandidateSearch = () => {
 
   const getCandidates = async () => {
     const candidatesArray = await searchGithub();
-    console.log('candidatesArray: ', candidatesArray);
+    // console.log('candidatesArray: ', candidatesArray);
     setCandidates(candidatesArray);
   }
 
