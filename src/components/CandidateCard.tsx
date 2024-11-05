@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 type CandidateCardProps = {
     currentCandidate: Candidate;
-    showNextCandidate?: (() => void) | null;
-    addToPotentialCandidates?: (() => void) | null;
-    onPotentialCandidates?: boolean | null;
+    showNextCandidate?: (() => void);
+    // addToPotentialCandidates?: (() => void) | null;
+    // onPotentialCandidates?: boolean | null;
     //   removeFromStorage?:
     //     | ((
     //         e: React.MouseEvent<SVGSVGElement, MouseEvent>,
@@ -17,16 +17,15 @@ type CandidateCardProps = {
     //     | null;
 };
 
-const CandidateCard = ({
-    currentCandidate,
-    // showNextCandidate,
-    // addToPotentialCandidates,
-    // onPotentialCandidates,
-    // removeFromStorage,
+const CandidateCard = ({ currentCandidate, showNextCandidate
+    // addToPotentialCandidates, onPotentialCandidates, removeFromStorage
 }: CandidateCardProps) => {
+
+// console.log(currentCandidate);
+
     return (
         <>
-            {currentCandidate?.name ? (
+            {currentCandidate ? (
                 <section className='candidateCard'>
                     <figure>
                         <img src={`${currentCandidate.avatar_url}`} alt={`${currentCandidate.login}`} />
@@ -53,10 +52,10 @@ const CandidateCard = ({
                             <strong>Bio:</strong> {currentCandidate.bio}
                         </p>
                     </article>
-                    <button>
+                    <button onClick={showNextCandidate}>
                         +
                     </button>
-                    <button>
+                    <button onClick={showNextCandidate}>
                         -
                     </button>
                 </section>
