@@ -34,7 +34,7 @@ const searchGithubUser = async (username: string | null) => {
     if (!response.ok) {
       throw new Error('invalid API response, check the network tab');
     }
-    console.log('searchGithubUser data:', data);
+    // console.log('searchGithubUser data:', data);
     return data;
   } catch (err) {
     console.log('an error occurred', err);
