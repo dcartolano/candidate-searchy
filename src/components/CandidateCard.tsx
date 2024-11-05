@@ -1,11 +1,11 @@
 // import type React from 'react';
-import type Candidate from '../interfaces/Candidate.interface';
 import { Link } from 'react-router-dom';
+import type Candidate from '../interfaces/Candidate.interface';
 
 type CandidateCardProps = {
     currentCandidate: Candidate;
     showNextCandidate?: (() => void);
-    // addToPotentialCandidates?: (() => void) | null;
+    addToPotentialCandidates?: (() => void);
     // onPotentialCandidates?: boolean | null;
     //   removeFromStorage?:
     //     | ((
@@ -17,8 +17,8 @@ type CandidateCardProps = {
     //     | null;
 };
 
-const CandidateCard = ({ currentCandidate, showNextCandidate
-    // addToPotentialCandidates, onPotentialCandidates, removeFromStorage
+const CandidateCard = ({ currentCandidate, showNextCandidate, addToPotentialCandidates
+    // , onPotentialCandidates, removeFromStorage
 }: CandidateCardProps) => {
 
 // console.log(currentCandidate);
@@ -52,7 +52,7 @@ const CandidateCard = ({ currentCandidate, showNextCandidate
                             <strong>Bio:</strong> {currentCandidate.bio}
                         </p>
                     </article>
-                    <button onClick={showNextCandidate}>
+                    <button onClick={addToPotentialCandidates}>
                         +
                     </button>
                     <button onClick={showNextCandidate}>
