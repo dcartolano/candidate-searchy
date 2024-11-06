@@ -27,9 +27,9 @@ const CandidateSearch = () => {
     hireable: null,
     html_url: null,
     id: null,
-    login: '',
+    login: null,
     location: null,
-    name: '',
+    name: null,
     node_id: null,
     organizations_url: null,
     public_gists: null,
@@ -65,6 +65,7 @@ const CandidateSearch = () => {
     // console.log('candidate.login:', candidate.login);
     const data = await searchGithubUser(candidate.login);
     // console.log('getCurrentCandidateData "data": ', data);
+    data === null ? setCandidateCount(++candidateCount) : 
     setCurrentCandidateData(data);
   }
 
