@@ -38,7 +38,8 @@ const searchGithubUser = async (username: string | null) => {
     return data;
   } catch (err) {
     console.log('an error occurred', err);
-    return {};
+    // return {};
+    return null;
   }
 };
 
