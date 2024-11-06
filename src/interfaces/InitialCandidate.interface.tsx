@@ -8,7 +8,7 @@ export default interface InitialCandidate {
     readonly gravatar_id: string | null;
     readonly html_url: string | null;
     readonly id: number | null;
-    readonly login: string;
+    readonly login: string | null ;
     readonly node_id: string | null;
     readonly organizations_url: string | null;
     readonly received_events_url: string | null;
