@@ -23,6 +23,8 @@ const CandidateCard = ({ currentCandidate, showNextCandidate, addToPotentialCand
 
 // console.log(currentCandidate);
 
+const realName: string | null = currentCandidate.name === null ? currentCandidate.login : currentCandidate.name;
+
     return (
         <>
             {currentCandidate ? (
@@ -31,7 +33,7 @@ const CandidateCard = ({ currentCandidate, showNextCandidate, addToPotentialCand
                         <img src={`${currentCandidate.avatar_url}`} alt={`${currentCandidate.login}`} />
                     </figure>
                     <article className='details'>
-                        <h2>{`${currentCandidate.name} ${currentCandidate.login}`}</h2>
+                        <h2>{`${realName} (${currentCandidate.login})`}</h2>
                         <p>
                             <strong>Location:</strong> {currentCandidate.location}
                         </p>
