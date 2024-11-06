@@ -16,9 +16,9 @@ export default interface Candidate {
   readonly hireable: string | null;
   readonly html_url: string | null;
   readonly id: number | null;
-  readonly login: string;
+  readonly login: string | null ;
   readonly location: string | null;
-  readonly name: string;
+  readonly name: string | null ;
   readonly node_id: string | null;
   readonly organizations_url: string | null;
   readonly public_gists: number | null;
