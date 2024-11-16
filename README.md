@@ -15,41 +15,36 @@ Through this project, I primarily learned more about using React with Typescript
 
 ## Installation
 
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+Copy the SSH Key from the [GitHub Repository](https://github.com/dcartolano/candidate-searchy) and perform a git clone into a local directory of your choice. Open in VS Code or similar program. In the integrated terminal, run `npm i` to download all relevant node modules. 
 
-Copy the SSH Key from the [GitHub Repository](https://github.com/dcartolano/react-portfolio) and perform a git clone into the directory of your choice. Open in VS Code or similar program. In the terminal, run "npm i" to download all relevant node modules. 
+You'll need to request a fine-grained Github personal access token, which you can learn about how to create 
+[here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token). To find out more about authenticating to the GitHub Rest API, 
+[click here](https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token).
 
-Make sure to request 
-[creating a fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
-[GitHub Documentation on Authenticating to the REST API](https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token)
+After you have your token, you'll need to place it in the .env.EXAMPLE file, and then remove the example and rename to just `.env`.
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+If you only want to navigate to the deployed site, you can view it [here](https://candidate-searchy.netlify.app).
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+If you are trying to view the app locally through the terminal, right click on the package.json file in the outermost folder and select "Open in Integrated Terminal", then run the commands `npm run build` and `npm run start` to launch the application, which should open in your browser automatically. If it does not, click/copy the link in the terminal where it tells you the server is running and open in your preferred browser.
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-
-If you only want to navigate to the deployed site, you can view it [here](https://shiny-baklava-8ba7dd.netlify.app).
-
-If you are trying to view the app locally through the terminal, right click on the package.json file in the outermost folder and select "Open in Integrated Terminal", then run the command "npm i" if you haven't already, followed by "npm run build" and finally "npm run start." It may not open in your browser automatically, so use a ctrl-click (for Windows) or a cmd-click (for mac) on the link shown in the terminal to open it in your default browser.
+Homepage will automatically pull in candidates and their info when it loads. You can use the "+" button to add the current candidite to your saved candidates list and show the next candidate, or use the "-" button to reject the candidate and show the next candidate. 
+![homepage](./assets/homepage.png)
+Once you have gone through all the candidates, the page will display a message telling you there are no more candidates left to display.
+![homepage](./assets/no-more-candidates.png)
+If you have not added anyone to the list, the saved candidates page will display a message instructing you to add potential candidates to the list.
+![homepage](./assets/add-candidates.png)
+Once you've saved candidates, the page will display their profile cards in the order that you've added them. To reject a candidate and remove them from your list, click the "-" button. 
+![homepage](./assets/saved-candidates.png)
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
-
 Thanks to EdX and Northwestern for the starter code and the opportunity to practice these skills. 
 
-Thanks to my instructor and the EdX tutors for all the help and clarifications along the way.
+Thanks also to my instructor and the EdX tutors for all the help and clarifications along the way.
 
-I referenced (this video)[https://www.youtube.com/watch?v=4sosXZsdy-s] to help me get started with using Bootstrap.
+I referenced [this video](https://www.youtube.com/watch?v=-4XpG5_Lj_o&t=631s) to help me get started with using useEffect.
 
 ## License
 
